@@ -1,0 +1,31 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Launch (Debug)",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Sandbox/Binaries/Sandbox.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"preLaunchTask": "Build (Debug)",
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"console": "integratedTerminal"
+		},
+		{
+			"name": "Launch (Release)",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/Sandbox/Binaries/Sandbox.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"preLaunchTask": "Build (Release)",
+			"cwd": "${workspaceFolder}",
+			"environment": [],
+			"console": "integratedTerminal"
+		},
+		
+	],
+	"compounds": []
+}

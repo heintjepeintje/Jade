@@ -1,0 +1,31 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build (Debug)",
+			"command": "./compile.bat",
+			"type": "shell",
+			"args": [],
+			"problemMatcher": [
+				"$tsc"
+			],
+			"presentation": {
+				"reveal": "always"
+			},
+			"group": "build"
+		},
+		{
+			"label": "Build (Release)",
+			"command": "./compile.bat",
+			"type": "shell",
+			"args": [],
+			"problemMatcher": [
+				"$tsc"
+			],
+			"presentation": {
+				"reveal": "always"
+			},
+			"group": "build"
+		}
+	]
+}

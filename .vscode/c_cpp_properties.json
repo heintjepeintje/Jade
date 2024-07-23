@@ -1,0 +1,31 @@
+{
+    "configurations": [
+        {
+            "name": "Windows (Debug)",
+			"includePath": [
+				"${workspaceFolder}/JadeEngine/Source"
+			],
+			"cppStandard": "c++23",
+			"compilerPath": "C:/Programs/MinGW64/bin/g++.exe",
+			"defines": [
+				"_DEBUG",
+				"UNICODE"
+			],
+			"intelliSenseMode": "windows-gcc-x64"
+        },
+		{
+            "name": "Windows (Release)",
+			"includePath": [
+				"${workspaceFolder}/JadeEngine/Source"
+			],
+			"cppStandard": "c++23",
+			"compilerPath": "C:/Programs/MinGW64/bin/g++.exe",
+			"defines": [
+				"NDEBUG",
+				"UNICODE"
+			],
+			"intelliSenseMode": "windows-gcc-x64"
+        }
+    ],
+    "version": 4
+}
