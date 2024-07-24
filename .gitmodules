@@ -1,0 +1,3 @@
+[submodule "JadeEngine/Libraries/glm"]
+	path = JadeEngine/Libraries/glm
+	url = https://github.com/g-truc/glm.git
