@@ -1,2 +1,2 @@
-./Sandbox/Binaries
-./JadeEngine/Binaries
+Sandbox/Binaries/*
+JadeEngine/Binaries/*

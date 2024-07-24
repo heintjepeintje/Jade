@@ -1,10 +1,36 @@
 Binaries/Intermediate/Sandbox.o: Source/Sandbox.cpp \
- C:/Programs/mingw64/include/c++/14.1.0/iostream \
- C:/Programs/mingw64/include/c++/14.1.0/bits/requires_hosted.h \
+ ../JadeEngine/Source/Jade.hpp ../JadeEngine/Source/Jade/Core.hpp \
+ ../JadeEngine/Source/Jade/./Platform.hpp \
+ ../JadeEngine/Source/Jade/./Log.hpp \
+ ../JadeEngine/Source/Jade/././Logger.hpp \
+ C:/Programs/mingw64/include/c++/14.1.0/cstdint \
  C:/Programs/mingw64/include/c++/14.1.0/x86_64-w64-mingw32/bits/c++config.h \
  C:/Programs/mingw64/include/c++/14.1.0/x86_64-w64-mingw32/bits/os_defines.h \
  C:/Programs/mingw64/include/c++/14.1.0/x86_64-w64-mingw32/bits/cpu_defines.h \
  C:/Programs/mingw64/include/c++/14.1.0/pstl/pstl_config.h \
+ C:/Programs/mingw64/lib/gcc/x86_64-w64-mingw32/14.1.0/include/stdint.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/stdint.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/crtdefs.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/corecrt.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/_mingw.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/vadefs.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+ C:/Programs/mingw64/lib/gcc/x86_64-w64-mingw32/14.1.0/include/stddef.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/stddef.h \
+ C:/Programs/mingw64/include/c++/14.1.0/cstdio \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/stdio.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/_mingw_off_t.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/swprintf.inl \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
+ C:/Programs/mingw64/include/c++/14.1.0/cstddef \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/version.h \
+ ../JadeEngine/Source/Jade/System/Startup.hpp \
+ ../JadeEngine/Source/Jade/System/Memory.hpp \
+ C:/Programs/mingw64/include/c++/14.1.0/iostream \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/requires_hosted.h \
  C:/Programs/mingw64/include/c++/14.1.0/ostream \
  C:/Programs/mingw64/include/c++/14.1.0/ios \
  C:/Programs/mingw64/include/c++/14.1.0/iosfwd \
@@ -13,27 +39,14 @@ Binaries/Intermediate/Sandbox.o: Source/Sandbox.cpp \
  C:/Programs/mingw64/include/c++/14.1.0/bits/postypes.h \
  C:/Programs/mingw64/include/c++/14.1.0/cwchar \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/wchar.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/corecrt.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/_mingw.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/vadefs.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/corecrt_wstdlib.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/_mingw_off_t.h \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/_mingw_stat64.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/swprintf.inl \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
  C:/Programs/mingw64/include/c++/14.1.0/exception \
  C:/Programs/mingw64/include/c++/14.1.0/bits/exception.h \
- C:/Programs/mingw64/include/c++/14.1.0/bits/version.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/exception_ptr.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/exception_defines.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/cxxabi_init_exception.h \
- C:/Programs/mingw64/lib/gcc/x86_64-w64-mingw32/14.1.0/include/stddef.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/stddef.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/crtdefs.h \
  C:/Programs/mingw64/include/c++/14.1.0/typeinfo \
  C:/Programs/mingw64/include/c++/14.1.0/bits/hash_bytes.h \
  C:/Programs/mingw64/include/c++/14.1.0/new \
@@ -45,8 +58,6 @@ Binaries/Intermediate/Sandbox.o: Source/Sandbox.cpp \
  C:/Programs/mingw64/include/c++/14.1.0/x86_64-w64-mingw32/bits/c++locale.h \
  C:/Programs/mingw64/include/c++/14.1.0/clocale \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/locale.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/stdio.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
  C:/Programs/mingw64/include/c++/14.1.0/cctype \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/ctype.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/ios_base.h \
@@ -116,12 +127,10 @@ Binaries/Intermediate/Sandbox.o: Source/Sandbox.cpp \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/malloc.h \
  C:/Programs/mingw64/lib/gcc/x86_64-w64-mingw32/14.1.0/include/mm_malloc.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/std_abs.h \
- C:/Programs/mingw64/include/c++/14.1.0/cstdio \
  C:/Programs/mingw64/include/c++/14.1.0/cerrno \
  C:/Programs/mingw64/include/c++/14.1.0/bits/charconv.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/basic_string.tcc \
  C:/Programs/mingw64/include/c++/14.1.0/bits/memory_resource.h \
- C:/Programs/mingw64/include/c++/14.1.0/cstddef \
  C:/Programs/mingw64/include/c++/14.1.0/bits/uses_allocator.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/uses_allocator_args.h \
  C:/Programs/mingw64/include/c++/14.1.0/tuple \

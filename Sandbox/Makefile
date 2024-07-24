@@ -6,7 +6,7 @@ SOURCE_DIR = Source
 OUTPUT_DIR = Binaries
 LIBRARY_DIR = ./../JadeEngine/Libraries
 
-CXXFLAGS = -std=c++17 -MD -Wall -Wextra
+CXXFLAGS = -std=c++17 -MD -Wall -Wextra -Werror -ggdb
 LDFLAGS = 
 DEFINES = -D_DEBUG
 INCLUDES = -ISource -I./../JadeEngine/Source
@@ -14,6 +14,7 @@ INCLUDES = -ISource -I./../JadeEngine/Source
 LIBDIRS = -L./../JadeEngine/Binaries
 
 LIBRARIES = -lJadeEngine 
+LIBRARIES += -lWs2_32
 
 # LIBDIRS += -LJadeEngine/Libraries/glad
 # LIBRARIES += -lglad -lgdi32 -lopengl32
@@ -35,7 +36,7 @@ Sandbox: $(OBJECTS)
 	$(CXX) -o $(OUTPUT_DIR)/$(PROJECT_NAME).exe $^ $(LIBDIRS) $(LDFLAGS) $(LIBRARIES)
 
 $(OUTPUT_DIR)/Intermediate/%.o: $(SOURCE_DIR)/%.cpp
-	$(CXX) -o $@ -ggdb -c $< $(CXXFLAGS) $(INCLUDES) $(DEFINES)
+	$(CXX) -o $@ -c $< $(CXXFLAGS) $(INCLUDES) $(DEFINES)
 	
 clean:
 	cd Binaries && del /s /q *

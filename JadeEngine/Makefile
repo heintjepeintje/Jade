@@ -5,7 +5,7 @@ OUTPUT_DIR = Binaries
 LIBRARY_DIR = Libraries
 PROJECT_NAME = JadeEngine
 
-CXXFLAGS = -std=c++23 -MD -Wall -Wextra
+CXXFLAGS = -std=c++23 -MD -Wall -Wextra -Werror -ggdb
 DEFINES = -D_DEBUG
 INCLUDES = -I$(SOURCE_DIR)
 
@@ -23,7 +23,7 @@ $(PROJECT_NAME): $(OBJECTS)
 	ar rcs $(OUTPUT_DIR)/$(PROJECT_NAME).lib $^ -s
 
 $(OUTPUT_DIR)/Intermediate/%.o: $(SOURCE_DIR)/%.cpp
-	$(CXX) -o $@ -ggdb -c $< $(CXXFLAGS) $(INCLUDES) $(DEFINES)
+	$(CXX) -o $@ -c $< $(CXXFLAGS) $(INCLUDES) $(DEFINES)
 	
 clean:
 	cd Binaries && del /s /q *

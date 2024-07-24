@@ -1,18 +1,15 @@
-## Core Systems
+# Completed
 - Platform Detection
 - Atomic Data Types
-- Collections and Algorithms
-- File I/O
-- Network Transport Layer
-- Hi-Res Timer
-- Threading Library
 - Engine Start-up and Shut-down
 - Assertions
-- Unit Testing
-- Memory Allocation
-- Math Library
-- Strings and Hashed string ID's
+- Memory (De)Allocation
 - Debug Printing and Logging
+
+# TODO
+## Core Systems
+- Windowing System
+- Math Library
 - File Parsers
 - Profiling
 - Engine Config
@@ -35,3 +32,12 @@
 
 ## Profiling and Debugging
 - Memory and Performance Status
+
+# Backburner
+- Strings and Hashed string ID's
+- Unit Testing
+- Collections and Algorithms
+- File I/O
+- Network Transport Layer
+- Hi-Res Timer
+- Threading Library
