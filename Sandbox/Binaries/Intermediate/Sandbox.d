@@ -27,68 +27,34 @@ Binaries/Intermediate/Sandbox.o: Source/Sandbox.cpp \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
  C:/Programs/mingw64/include/c++/14.1.0/cstddef \
  C:/Programs/mingw64/include/c++/14.1.0/bits/version.h \
- ../JadeEngine/Source/Jade/System/Startup.hpp \
- ../JadeEngine/Source/Jade/System/Memory.hpp \
- C:/Programs/mingw64/include/c++/14.1.0/iostream \
+ C:/Programs/mingw64/include/c++/14.1.0/string \
  C:/Programs/mingw64/include/c++/14.1.0/bits/requires_hosted.h \
- C:/Programs/mingw64/include/c++/14.1.0/ostream \
- C:/Programs/mingw64/include/c++/14.1.0/ios \
- C:/Programs/mingw64/include/c++/14.1.0/iosfwd \
  C:/Programs/mingw64/include/c++/14.1.0/bits/stringfwd.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/memoryfwd.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/char_traits.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/postypes.h \
  C:/Programs/mingw64/include/c++/14.1.0/cwchar \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/wchar.h \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/corecrt_wstdlib.h \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/_mingw_stat64.h \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
- C:/Programs/mingw64/include/c++/14.1.0/exception \
- C:/Programs/mingw64/include/c++/14.1.0/bits/exception.h \
- C:/Programs/mingw64/include/c++/14.1.0/bits/exception_ptr.h \
- C:/Programs/mingw64/include/c++/14.1.0/bits/exception_defines.h \
- C:/Programs/mingw64/include/c++/14.1.0/bits/cxxabi_init_exception.h \
- C:/Programs/mingw64/include/c++/14.1.0/typeinfo \
- C:/Programs/mingw64/include/c++/14.1.0/bits/hash_bytes.h \
- C:/Programs/mingw64/include/c++/14.1.0/new \
- C:/Programs/mingw64/include/c++/14.1.0/bits/move.h \
  C:/Programs/mingw64/include/c++/14.1.0/type_traits \
- C:/Programs/mingw64/include/c++/14.1.0/bits/nested_exception.h \
- C:/Programs/mingw64/include/c++/14.1.0/bits/char_traits.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/allocator.h \
+ C:/Programs/mingw64/include/c++/14.1.0/x86_64-w64-mingw32/bits/c++allocator.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/new_allocator.h \
+ C:/Programs/mingw64/include/c++/14.1.0/new \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/exception.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/functexcept.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/exception_defines.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/move.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/cpp_type_traits.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/localefwd.h \
  C:/Programs/mingw64/include/c++/14.1.0/x86_64-w64-mingw32/bits/c++locale.h \
  C:/Programs/mingw64/include/c++/14.1.0/clocale \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/locale.h \
+ C:/Programs/mingw64/include/c++/14.1.0/iosfwd \
  C:/Programs/mingw64/include/c++/14.1.0/cctype \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/ctype.h \
- C:/Programs/mingw64/include/c++/14.1.0/bits/ios_base.h \
- C:/Programs/mingw64/include/c++/14.1.0/ext/atomicity.h \
- C:/Programs/mingw64/include/c++/14.1.0/x86_64-w64-mingw32/bits/gthr.h \
- C:/Programs/mingw64/include/c++/14.1.0/x86_64-w64-mingw32/bits/gthr-default.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/pthread.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/errno.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/sys/types.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/process.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/corecrt_startup.h \
- C:/Programs/mingw64/lib/gcc/x86_64-w64-mingw32/14.1.0/include/limits.h \
- C:/Programs/mingw64/lib/gcc/x86_64-w64-mingw32/14.1.0/include/syslimits.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/limits.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/signal.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/pthread_signal.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/time.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/sys/timeb.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/_timeval.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/pthread_time.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/pthread_compat.h \
- C:/Programs/mingw64/x86_64-w64-mingw32/include/pthread_unistd.h \
- C:/Programs/mingw64/include/c++/14.1.0/x86_64-w64-mingw32/bits/atomic_word.h \
- C:/Programs/mingw64/include/c++/14.1.0/bits/locale_classes.h \
- C:/Programs/mingw64/include/c++/14.1.0/string \
- C:/Programs/mingw64/include/c++/14.1.0/bits/allocator.h \
- C:/Programs/mingw64/include/c++/14.1.0/x86_64-w64-mingw32/bits/c++allocator.h \
- C:/Programs/mingw64/include/c++/14.1.0/bits/new_allocator.h \
- C:/Programs/mingw64/include/c++/14.1.0/bits/functexcept.h \
- C:/Programs/mingw64/include/c++/14.1.0/bits/cpp_type_traits.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/ostream_insert.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/cxxabi_forced.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/stl_iterator_base_funcs.h \
@@ -118,14 +84,19 @@ Binaries/Intermediate/Sandbox.o: Source/Sandbox.cpp \
  C:/Programs/mingw64/include/c++/14.1.0/bits/stl_construct.h \
  C:/Programs/mingw64/include/c++/14.1.0/string_view \
  C:/Programs/mingw64/include/c++/14.1.0/bits/functional_hash.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/hash_bytes.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/string_view.tcc \
  C:/Programs/mingw64/include/c++/14.1.0/ext/string_conversions.h \
  C:/Programs/mingw64/include/c++/14.1.0/cstdlib \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/stdlib.h \
+ C:/Programs/mingw64/lib/gcc/x86_64-w64-mingw32/14.1.0/include/limits.h \
+ C:/Programs/mingw64/lib/gcc/x86_64-w64-mingw32/14.1.0/include/syslimits.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/limits.h \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
  C:/Programs/mingw64/include/c++/14.1.0/stdlib.h \
  C:/Programs/mingw64/x86_64-w64-mingw32/include/malloc.h \
  C:/Programs/mingw64/lib/gcc/x86_64-w64-mingw32/14.1.0/include/mm_malloc.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/errno.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/std_abs.h \
  C:/Programs/mingw64/include/c++/14.1.0/cerrno \
  C:/Programs/mingw64/include/c++/14.1.0/bits/charconv.h \
@@ -134,6 +105,56 @@ Binaries/Intermediate/Sandbox.o: Source/Sandbox.cpp \
  C:/Programs/mingw64/include/c++/14.1.0/bits/uses_allocator.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/uses_allocator_args.h \
  C:/Programs/mingw64/include/c++/14.1.0/tuple \
+ C:/Programs/mingw64/include/c++/14.1.0/memory \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/stl_tempbuf.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/stl_uninitialized.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/stl_raw_storage_iter.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/align.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/unique_ptr.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/shared_ptr.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/shared_ptr_base.h \
+ C:/Programs/mingw64/include/c++/14.1.0/typeinfo \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/allocated_ptr.h \
+ C:/Programs/mingw64/include/c++/14.1.0/ext/aligned_buffer.h \
+ C:/Programs/mingw64/include/c++/14.1.0/ext/atomicity.h \
+ C:/Programs/mingw64/include/c++/14.1.0/x86_64-w64-mingw32/bits/gthr.h \
+ C:/Programs/mingw64/include/c++/14.1.0/x86_64-w64-mingw32/bits/gthr-default.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/pthread.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/sys/types.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/process.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/corecrt_startup.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/signal.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/pthread_signal.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/time.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/sys/timeb.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/_timeval.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/pthread_time.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/pthread_compat.h \
+ C:/Programs/mingw64/x86_64-w64-mingw32/include/pthread_unistd.h \
+ C:/Programs/mingw64/include/c++/14.1.0/x86_64-w64-mingw32/bits/atomic_word.h \
+ C:/Programs/mingw64/include/c++/14.1.0/ext/concurrence.h \
+ C:/Programs/mingw64/include/c++/14.1.0/exception \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/exception_ptr.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/cxxabi_init_exception.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/nested_exception.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/shared_ptr_atomic.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/atomic_base.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/atomic_lockfree_defines.h \
+ C:/Programs/mingw64/include/c++/14.1.0/backward/auto_ptr.h \
+ C:/Programs/mingw64/include/c++/14.1.0/pstl/glue_memory_defs.h \
+ C:/Programs/mingw64/include/c++/14.1.0/pstl/execution_defs.h \
+ ../JadeEngine/Source/Jade/Event.hpp \
+ ../JadeEngine/Source/Jade/./System/Input.hpp \
+ ../JadeEngine/Source/Jade/System/Startup.hpp \
+ ../JadeEngine/Source/Jade/System/Memory.hpp \
+ ../JadeEngine/Source/Jade/System/Window.hpp \
+ C:/dev/Jade/JadeEngine/Source/Jade/Platform/NativeWindow.hpp \
+ C:/Programs/mingw64/include/c++/14.1.0/iostream \
+ C:/Programs/mingw64/include/c++/14.1.0/ostream \
+ C:/Programs/mingw64/include/c++/14.1.0/ios \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/ios_base.h \
+ C:/Programs/mingw64/include/c++/14.1.0/bits/locale_classes.h \
  C:/Programs/mingw64/include/c++/14.1.0/bits/locale_classes.tcc \
  C:/Programs/mingw64/include/c++/14.1.0/system_error \
  C:/Programs/mingw64/include/c++/14.1.0/x86_64-w64-mingw32/bits/error_constants.h \

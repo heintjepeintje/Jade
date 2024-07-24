@@ -7,7 +7,7 @@ PROJECT_NAME = JadeEngine
 
 CXXFLAGS = -std=c++23 -MD -Wall -Wextra -Werror -ggdb
 DEFINES = -D_DEBUG
-INCLUDES = -I$(SOURCE_DIR)
+INCLUDES = -I$(SOURCE_DIR) -I$(LIBRARY_DIR)/glm
 
 # INCLUDES += -I$(VK_SDK_PATH)/Include
 # INCLUDES += -I"$(DXSDK_DIR)/Include"

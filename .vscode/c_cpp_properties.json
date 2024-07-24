@@ -3,7 +3,8 @@
         {
             "name": "Windows (Debug)",
 			"includePath": [
-				"${workspaceFolder}/JadeEngine/Source"
+				"${workspaceFolder}/JadeEngine/Source",
+				"${workspaceFolder}/JadeEngine/Libraries/glm"
 			],
 			"cppStandard": "c++23",
 			"compilerPath": "C:/Programs/MinGW64/bin/g++.exe",
@@ -16,7 +17,8 @@
 		{
             "name": "Windows (Release)",
 			"includePath": [
-				"${workspaceFolder}/JadeEngine/Source"
+				"${workspaceFolder}/JadeEngine/Source",
+				"${workspaceFolder}/JadeEngine/Libraries/glm"
 			],
 			"cppStandard": "c++23",
 			"compilerPath": "C:/Programs/MinGW64/bin/g++.exe",

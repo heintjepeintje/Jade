@@ -5,11 +5,10 @@
 - Assertions
 - Memory (De)Allocation
 - Debug Printing and Logging
+- Windowing System
 
 # TODO
 ## Core Systems
-- Windowing System
-- Math Library
 - File Parsers
 - Profiling
 - Engine Config
@@ -34,6 +33,7 @@
 - Memory and Performance Status
 
 # Backburner
+- Math Library
 - Strings and Hashed string ID's
 - Unit Testing
 - Collections and Algorithms

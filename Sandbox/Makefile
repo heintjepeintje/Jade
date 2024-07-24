@@ -25,6 +25,8 @@ LIBRARIES += -lWs2_32
 # LIBDIRS += -L"$(DXSDK_DIR)/Lib/x86"
 # LIBRARIES += -ld3d11 -ld3dx11 -ldxgi -ldxerr -ld3dcompiler -ldxguid
 
+INCLUDES += -I./../JadeEngine/Libraries/glm
+
 SOURCES = $(wildcard $(SOURCE_DIR)/**.cpp $(SOURCE_DIR)/**/**.cpp $(SOURCE_DIR)/**/**/**.cpp $(SOURCE_DIR)/**/**/**/**.cpp)
 OBJECTS = $(SOURCES:$(SOURCE_DIR)/%.cpp=$(OUTPUT_DIR)/Intermediate/%.o)
 
