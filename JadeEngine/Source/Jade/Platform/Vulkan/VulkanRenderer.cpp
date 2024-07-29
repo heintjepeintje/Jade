@@ -99,7 +99,7 @@ namespace Jade {
 			
 			vkCmdPipelineBarrier(
 				m_CommandBuffers[m_SwapChain->GetNextImageIndex()],
-				VK_PIPELINE_STAGE_TRANSFER_BIT,
+				VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT,
 				VK_PIPELINE_STAGE_TRANSFER_BIT,
 				0,
 				0, nullptr,
