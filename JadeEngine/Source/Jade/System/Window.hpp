@@ -21,8 +21,11 @@ namespace Jade {
 		inline uint32_t GetWidth() const { return m_NativeHandle->GetWidth(); }
 		inline uint32_t GetHeight() const { return m_NativeHandle->GetHeight(); }
 		
+		inline const Ref<Native::NativeWindow> GetNativeHandle() const { return m_NativeHandle; }
+		inline Ref<Native::NativeWindow> GetNativeHandle() { return m_NativeHandle; }
+		
 	private:
-		std::shared_ptr<Native::NativeWindow> m_NativeHandle;
+		Ref<Native::NativeWindow> m_NativeHandle;
 	};
 
 }

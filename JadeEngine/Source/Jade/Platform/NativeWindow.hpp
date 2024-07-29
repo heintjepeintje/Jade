@@ -10,7 +10,7 @@ namespace Jade {
 	
 		class NativeWindow {
 		public:
-			static std::shared_ptr<NativeWindow> Create(const std::string &title, uint32_t width, uint32_t height);
+			static Ref<NativeWindow> Create(const std::string &title, uint32_t width, uint32_t height);
 			
 		public:
 			NativeWindow() = default;
@@ -23,6 +23,7 @@ namespace Jade {
 			
 			virtual uint32_t GetWidth() const = 0;
 			virtual uint32_t GetHeight() const = 0;
+			virtual std::string GetTitle() const = 0;
 		};
 	
 	}

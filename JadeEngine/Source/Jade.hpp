@@ -10,3 +10,11 @@
 #include <Jade/System/Memory.hpp>
 #include <Jade/System/Window.hpp>
 #include <Jade/System/Input.hpp>
+
+// Graphics
+#include <Jade/Graphics/GraphicsContext.hpp>
+#include <Jade/Graphics/Renderer.hpp>
+#include <Jade/Graphics/Shader.hpp>
+#include <Jade/Graphics/Mesh.hpp>
+#include <Jade/Graphics/RenderPass.hpp>
+#include <Jade/Graphics/Framebuffer.hpp>

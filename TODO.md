@@ -20,14 +20,14 @@
 
 ## Low-Level Renderer
 - Graphics Device Interface
-- Materials and Shaders
-- Static and Dynamic Lighting
-- Cameras
-- Text Rendering
 - Primitive Submission
-- Viewports and Framebuffers
+- Materials and Shaders
 - Textures
+- Cameras
 - Debug Drawing
+- Static and Dynamic Lighting
+- Text Rendering
+- Viewports and Framebuffers
 
 ## Profiling and Debugging
 - Memory and Performance Status

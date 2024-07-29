@@ -19,11 +19,11 @@ LIBRARIES += -lWs2_32
 # LIBDIRS += -LJadeEngine/Libraries/glad
 # LIBRARIES += -lglad -lgdi32 -lopengl32
 
-# LIBDIRS += -L$(VK_SDK_PATH)/Lib32
-# LIBRARIES += -lvulkan-1
+LIBDIRS += -L"$(VK_SDK_PATH)/Lib"
+LIBRARIES += -lvulkan-1
 
-# LIBDIRS += -L"$(DXSDK_DIR)/Lib/x86"
-# LIBRARIES += -ld3d11 -ld3dx11 -ldxgi -ldxerr -ld3dcompiler -ldxguid
+# LIBDIRS += -L"$(DXSDK_DIR)/Lib/x64"
+# LIBRARIES += -ld3d11 -ldxgi -ld3dcompiler -ldxguid -ld3d11sdklayers
 
 INCLUDES += -I./../JadeEngine/Libraries/glm
 

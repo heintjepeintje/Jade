@@ -9,7 +9,7 @@ CXXFLAGS = -std=c++23 -MD -Wall -Wextra -Werror -ggdb
 DEFINES = -D_DEBUG
 INCLUDES = -I$(SOURCE_DIR) -I$(LIBRARY_DIR)/glm
 
-# INCLUDES += -I$(VK_SDK_PATH)/Include
+INCLUDES += -I$(VK_SDK_PATH)/Include
 # INCLUDES += -I"$(DXSDK_DIR)/Include"
 
 SOURCES = $(wildcard $(SOURCE_DIR)/**.cpp $(SOURCE_DIR)/**/**.cpp $(SOURCE_DIR)/**/**/**.cpp $(SOURCE_DIR)/**/**/**/**.cpp)

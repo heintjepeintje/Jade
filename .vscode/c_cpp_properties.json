@@ -4,7 +4,8 @@
             "name": "Windows (Debug)",
 			"includePath": [
 				"${workspaceFolder}/JadeEngine/Source",
-				"${workspaceFolder}/JadeEngine/Libraries/glm"
+				"${workspaceFolder}/JadeEngine/Libraries/glm",
+				"${env:VULKAN_SDK}/Include"
 			],
 			"cppStandard": "c++23",
 			"compilerPath": "C:/Programs/MinGW64/bin/g++.exe",
@@ -18,7 +19,8 @@
             "name": "Windows (Release)",
 			"includePath": [
 				"${workspaceFolder}/JadeEngine/Source",
-				"${workspaceFolder}/JadeEngine/Libraries/glm"
+				"${workspaceFolder}/JadeEngine/Libraries/glm",
+				"${env:VULKAN_SDK}/Include"
 			],
 			"cppStandard": "c++23",
 			"compilerPath": "C:/Programs/MinGW64/bin/g++.exe",

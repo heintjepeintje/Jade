@@ -8,7 +8,7 @@
 			"program": "${workspaceFolder}/Sandbox/Binaries/Sandbox.exe",
 			"args": [],
 			"stopAtEntry": false,
-			"cwd": "${workspaceFolder}",
+			"cwd": "${workspaceFolder}/Sandbox",
 			"preLaunchTask": "Build (Debug)",
 			"environment": [],
 			"externalConsole": true,
@@ -35,7 +35,7 @@
 			"args": [],
 			"stopAtEntry": false,
 			"preLaunchTask": "Build (Release)",
-			"cwd": "${workspaceFolder}",
+			"cwd": "${workspaceFolder}/Sandbox",
 			"environment": [],
 			"console": "externalTerminal"
 		},

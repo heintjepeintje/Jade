@@ -172,7 +172,7 @@ namespace Jade {
 	
 	namespace Native {
 	
-		std::shared_ptr<NativeWindow> NativeWindow::Create(const std::string &title, uint32_t width, uint32_t height) {
+		Ref<NativeWindow> NativeWindow::Create(const std::string &title, uint32_t width, uint32_t height) {
 			return std::make_shared<Windows::WindowsWindow>(title, width, height);
 		}
 	

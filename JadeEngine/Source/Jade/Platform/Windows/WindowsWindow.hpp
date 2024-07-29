@@ -30,6 +30,9 @@ namespace Jade {
 			
 			inline virtual uint32_t GetWidth() const override { return m_Data.Width; }
 			inline virtual uint32_t GetHeight() const override { return m_Data.Height; }
+			inline virtual std::string GetTitle() const override { return m_Data.Title; }
+			
+			inline HWND GetWindowHandle() const { return m_WindowHandle; }
 			
 		private:
 			WindowData m_Data;
