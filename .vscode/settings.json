@@ -64,6 +64,5 @@
 		"set": "cpp",
 		"expected": "cpp",
 		"fstream": "cpp"
-	},
-	"cmake.configureOnOpen": false
+	}
 }

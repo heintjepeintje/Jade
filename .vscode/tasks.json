@@ -3,7 +3,7 @@
 	"tasks": [
 		{
 			"label": "Build (Debug)",
-			"command": "./compile.bat",
+			"command": "premake5 gmake2 ; make config=debug CC=g++",
 			"type": "shell",
 			"args": [],
 			"problemMatcher": [
@@ -16,7 +16,7 @@
 		},
 		{
 			"label": "Build (Release)",
-			"command": "./compile.bat",
+			"command": "premake5 gmake2 ; make config=release CC=g++",
 			"type": "shell",
 			"args": [],
 			"problemMatcher": [

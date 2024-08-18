@@ -7,8 +7,8 @@
 				"${workspaceFolder}/JadeEngine/Libraries/glm",
 				"${env:VULKAN_SDK}/Include"
 			],
-			"cppStandard": "c++23",
-			"compilerPath": "C:/Programs/MinGW64/bin/g++.exe",
+			"cppStandard": "c++20",
+			"compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
 			"defines": [
 				"_DEBUG",
 				"UNICODE"
@@ -22,8 +22,8 @@
 				"${workspaceFolder}/JadeEngine/Libraries/glm",
 				"${env:VULKAN_SDK}/Include"
 			],
-			"cppStandard": "c++23",
-			"compilerPath": "C:/Programs/MinGW64/bin/g++.exe",
+			"cppStandard": "c++20",
+			"compilerPath": "C:/Program Files/MinGW64/bin/g++.exe",
 			"defines": [
 				"NDEBUG",
 				"UNICODE"

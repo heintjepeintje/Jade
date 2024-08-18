@@ -1,6 +1,7 @@
 #include "./VulkanGraphicsContext.hpp"
 #include <vector>
 #include <cstring>
+#include <algorithm>
 
 #ifdef _WIN32
 #	include "./../Windows/WindowsWindow.hpp"

@@ -5,7 +5,7 @@
 			"name": "Launch (Debug)",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/Sandbox/Binaries/Sandbox.exe",
+			"program": "${workspaceFolder}/Sandbox/Binaries/Debug/Output/Sandbox.exe",
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}/Sandbox",
@@ -13,7 +13,7 @@
 			"environment": [],
 			"externalConsole": true,
 			"MIMode": "gdb",
-			"miDebuggerPath": "C:/Programs/MinGW64/bin/gdb.exe",
+			"miDebuggerPath": "C:/Program Files/MinGW64/bin/gdb.exe",
 			"setupCommands": [
 				{
 					"description": "Enable pretty-printing for gdb",
@@ -31,7 +31,7 @@
 			"name": "Launch (Release)",
 			"type": "cppvsdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/Sandbox/Binaries/Sandbox.exe",
+			"program": "${workspaceFolder}/Sandbox/Binaries/Debug/Output/Sandbox.exe",
 			"args": [],
 			"stopAtEntry": false,
 			"preLaunchTask": "Build (Release)",

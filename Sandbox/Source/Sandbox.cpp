@@ -27,8 +27,7 @@ void OnEvent(const Jade::Event &e) {
 Jade::Buffer ReadShader(const std::string &path) {
 	std::ifstream file = std::ifstream(path, std::ios::ate | std::ios::binary);
 	
-	JD_ASSERT(file.is_open(), "Could not find file: %s", path.c_str());
-	
+	JD_ASSERT(file.is_open(), "Could not find file: %s", path.c_str());	
 	
 	size_t size = (size_t) file.tellg();
 	Jade::Buffer shaderBinary(size);
@@ -54,8 +53,8 @@ static void Run() {
 	
 	s_Shader = Jade::Shader(
 		s_Context,
-		ReadShader("C:\\dev\\Jade\\Sandbox\\Binaries\\Shaders\\vertex.spv"),
-		ReadShader("C:\\dev\\Jade\\Sandbox\\Binaries\\Shaders\\fragment.spv")
+		ReadShader("C:\\dev\\Jade\\Sandbox\\Binaries\\Debug\\Shaders\\vertex.spv"),
+		ReadShader("C:\\dev\\Jade\\Sandbox\\Binaries\\Debug\\Shaders\\fragment.spv")
 	);
 	
 	s_RenderPipeline = Jade::RenderPipeline(s_Context, s_RenderPass, s_Shader, Jade::InputLayout::GetDefaultLayout());
