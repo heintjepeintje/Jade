@@ -4,7 +4,8 @@
 #include "./VulkanGraphicsContext.hpp"
 #include "./VulkanRenderPass.hpp"
 #include "./VulkanShader.hpp"
-#include "./VulkanMesh.hpp"
+#include "./VulkanRenderPipeline.hpp"
+#include "./VulkanBuffer.hpp"
 #include "./../NativeRenderer.hpp"
 
 namespace Jade {
@@ -36,8 +37,6 @@ namespace Jade {
 			VkViewport m_Viewport;
 			VkExtent2D m_Scissor;
 			
-			VkPipelineLayout m_PipelineLayout;
-			VkPipeline m_Pipeline;
 			VkRenderPass m_RenderPass;
 			
 			Ref<VulkanSwapChain> m_SwapChain;

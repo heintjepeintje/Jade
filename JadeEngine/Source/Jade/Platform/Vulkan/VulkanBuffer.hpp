@@ -1,6 +1,6 @@
 #pragma once
 
-#include "./../NativeMesh.hpp"
+#include "./../NativeBuffer.hpp"
 #include "./VulkanGraphicsContext.hpp"
 #include "./Vulkan.hpp"
 
@@ -34,11 +34,29 @@ namespace Jade {
 			
 			inline VkBuffer GetBuffer() { return m_Buffer; }
 			inline VkDeviceMemory GetDeviceMemory() { return m_Memory; }
-			inline virtual size_t GetSize() const { return m_Size; } 
+			inline virtual size_t GetSize() const { return m_Size; }
 		
 		private:
 			Ref<VulkanGraphicsContext> m_Context;
 			
+			VkBuffer m_Buffer = VK_NULL_HANDLE;
+			VkDeviceMemory m_Memory = VK_NULL_HANDLE;
+			
+			size_t m_Size = 0;
+		};
+
+		class VulkanUniformBuffer : public Native::NativeUniformBuffer {
+		public:
+			VulkanUniformBuffer(const Ref<VulkanGraphicsContext> &context, void *data, size_t size);
+			~VulkanUniformBuffer();
+
+			inline VkBuffer GetBuffer() { return m_Buffer; }
+			inline VkDeviceMemory GetDeviceMemory() { return m_Memory; }
+			inline virtual size_t GetSize() const { return m_Size; }
+
+		private:
+			Ref<VulkanGraphicsContext> m_Context;
+
 			VkBuffer m_Buffer = VK_NULL_HANDLE;
 			VkDeviceMemory m_Memory = VK_NULL_HANDLE;
 			

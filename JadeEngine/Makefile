@@ -38,8 +38,8 @@ TARGETDIR = Binaries/Debug/Output
 TARGET = $(TARGETDIR)/JadeEngine.lib
 OBJDIR = Binaries/Debug/Intermediate
 DEFINES += -D_DEBUG
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++20
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -Wall -std=c++20
 ALL_LDFLAGS += $(LDFLAGS)
 
 else ifeq ($(config),release)
@@ -47,8 +47,8 @@ TARGETDIR = Binaries/Release/Output
 TARGET = $(TARGETDIR)/JadeEngine.lib
 OBJDIR = Binaries/Release/Intermediate
 DEFINES += -DNDEBUG
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++20
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -Wall -std=c++20
 ALL_LDFLAGS += $(LDFLAGS) -s
 
 else ifeq ($(config),dist)
@@ -56,8 +56,8 @@ TARGETDIR = Binaries/Dist/Output
 TARGET = $(TARGETDIR)/JadeEngine.lib
 OBJDIR = Binaries/Dist/Intermediate
 DEFINES += -DNDEBUG
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++20
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -Wall -std=c++20
 ALL_LDFLAGS += $(LDFLAGS) -s
 
 endif
@@ -77,9 +77,10 @@ GENERATED += $(OBJDIR)/Log.o
 GENERATED += $(OBJDIR)/Logger.o
 GENERATED += $(OBJDIR)/Memory.o
 GENERATED += $(OBJDIR)/Startup.o
+GENERATED += $(OBJDIR)/VulkanBuffer.o
 GENERATED += $(OBJDIR)/VulkanGraphicsContext.o
-GENERATED += $(OBJDIR)/VulkanMesh.o
 GENERATED += $(OBJDIR)/VulkanRenderPass.o
+GENERATED += $(OBJDIR)/VulkanRenderPipeline.o
 GENERATED += $(OBJDIR)/VulkanRenderer.o
 GENERATED += $(OBJDIR)/VulkanShader.o
 GENERATED += $(OBJDIR)/WindowsInput.o
@@ -91,9 +92,10 @@ OBJECTS += $(OBJDIR)/Log.o
 OBJECTS += $(OBJDIR)/Logger.o
 OBJECTS += $(OBJDIR)/Memory.o
 OBJECTS += $(OBJDIR)/Startup.o
+OBJECTS += $(OBJDIR)/VulkanBuffer.o
 OBJECTS += $(OBJDIR)/VulkanGraphicsContext.o
-OBJECTS += $(OBJDIR)/VulkanMesh.o
 OBJECTS += $(OBJDIR)/VulkanRenderPass.o
+OBJECTS += $(OBJDIR)/VulkanRenderPipeline.o
 OBJECTS += $(OBJDIR)/VulkanRenderer.o
 OBJECTS += $(OBJDIR)/VulkanShader.o
 OBJECTS += $(OBJDIR)/WindowsInput.o
@@ -172,13 +174,16 @@ $(OBJDIR)/Log.o: Source/Jade/Log.cpp
 $(OBJDIR)/Logger.o: Source/Jade/Logger.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/VulkanBuffer.o: Source/Jade/Platform/Vulkan/VulkanBuffer.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/VulkanGraphicsContext.o: Source/Jade/Platform/Vulkan/VulkanGraphicsContext.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/VulkanMesh.o: Source/Jade/Platform/Vulkan/VulkanMesh.cpp
+$(OBJDIR)/VulkanRenderPass.o: Source/Jade/Platform/Vulkan/VulkanRenderPass.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/VulkanRenderPass.o: Source/Jade/Platform/Vulkan/VulkanRenderPass.cpp
+$(OBJDIR)/VulkanRenderPipeline.o: Source/Jade/Platform/Vulkan/VulkanRenderPipeline.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/VulkanRenderer.o: Source/Jade/Platform/Vulkan/VulkanRenderer.cpp

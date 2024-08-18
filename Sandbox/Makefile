@@ -34,8 +34,8 @@ TARGETDIR = Binaries/Debug/Output
 TARGET = $(TARGETDIR)/Sandbox.exe
 OBJDIR = Binaries/Debug/Intermediate
 DEFINES += -D_DEBUG
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++20
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -Wall -std=c++20
 LIBS += ../JadeEngine/Binaries/Debug/Output/JadeEngine.lib -lvulkan-1 -lWs2_32
 LDDEPS += ../JadeEngine/Binaries/Debug/Output/JadeEngine.lib
 ALL_LDFLAGS += $(LDFLAGS) -LC:/VulkanSDK/1.3.290.0/Lib
@@ -50,8 +50,8 @@ TARGETDIR = Binaries/Release/Output
 TARGET = $(TARGETDIR)/Sandbox.exe
 OBJDIR = Binaries/Release/Intermediate
 DEFINES += -DNDEBUG
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++20
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -Wall -std=c++20
 LIBS += ../JadeEngine/Binaries/Release/Output/JadeEngine.lib -lvulkan-1 -lWs2_32
 LDDEPS += ../JadeEngine/Binaries/Release/Output/JadeEngine.lib
 ALL_LDFLAGS += $(LDFLAGS) -LC:/VulkanSDK/1.3.290.0/Lib -s
@@ -66,8 +66,8 @@ TARGETDIR = Binaries/Dist/Output
 TARGET = $(TARGETDIR)/Sandbox.exe
 OBJDIR = Binaries/Dist/Intermediate
 DEFINES += -DNDEBUG
-ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2
-ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++20
+ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2 -Wall
+ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -Wall -std=c++20
 LIBS += ../JadeEngine/Binaries/Dist/Output/JadeEngine.lib -lvulkan-1 -lWs2_32
 LDDEPS += ../JadeEngine/Binaries/Dist/Output/JadeEngine.lib
 ALL_LDFLAGS += $(LDFLAGS) -LC:/VulkanSDK/1.3.290.0/Lib -s

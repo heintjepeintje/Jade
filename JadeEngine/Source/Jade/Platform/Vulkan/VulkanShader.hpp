@@ -25,31 +25,6 @@ namespace Jade {
 			VkShaderModule m_VertexShaderModule = VK_NULL_HANDLE;
 			VkShaderModule m_FragmentShaderModule = VK_NULL_HANDLE;
 		};
-		
-		class VulkanRenderPipeline : public Native::NativeRenderPipeline {
-		public:
-			VulkanRenderPipeline(const Ref<VulkanGraphicsContext> &context, const Ref<VulkanRenderPass> &renderPass, const Ref<VulkanShader> &shader, const InputLayout &layout);
-			~VulkanRenderPipeline();
-			
-			inline VkPipelineLayout GetPipelineLayout() { return m_PipelineLayout; }
-			inline VkPipeline GetPipeline() { return m_Pipeline; }
-			inline VkViewport GetViewport() { return m_Viewport; }
-			inline VkRect2D GetScissor() { return m_Scissor; }
-			
-			inline Ref<VulkanRenderPass> GetRenderPass() { return m_RenderPass; }
-			inline Ref<VulkanShader> GetShader() { return m_Shader; }
-			
-		private:
-			Ref<VulkanGraphicsContext> m_Context;
-			Ref<VulkanRenderPass> m_RenderPass;
-			Ref<VulkanShader> m_Shader;
-			
-			VkViewport m_Viewport;
-			VkRect2D m_Scissor;
-			
-			VkPipelineLayout m_PipelineLayout;
-			VkPipeline m_Pipeline;
-		};
 	
 	}
 

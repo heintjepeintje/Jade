@@ -13,6 +13,8 @@ project "JadeEngine"
 		"Libraries/glm",
 		os.getenv("VK_SDK_PATH") .. "/Include"
 	}
+	
+	warnings "High"
 
 	filter "configurations:Debug"
 		defines { "_DEBUG" }

@@ -23,6 +23,8 @@ project "Sandbox"
 		"Ws2_32"
 	}
 
+	warnings "High"
+
 	filter "configurations:Debug"
 		defines { "_DEBUG" }
 		prebuildcommands {

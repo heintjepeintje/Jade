@@ -2,10 +2,11 @@
 
 #include "./../Core.hpp"
 #include "./NativeGraphicsContext.hpp"
-#include "./NativeMesh.hpp"
+#include "./NativeBuffer.hpp"
 #include "./NativeRenderPass.hpp"
 #include "./NativeFramebuffer.hpp"
 #include "./NativeShader.hpp"
+#include "./NativeRenderPipeline.hpp"
 
 namespace Jade {
 

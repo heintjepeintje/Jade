@@ -17,15 +17,6 @@ namespace Jade {
 			virtual ~NativeShader() = default;
 		};
 		
-		class NativeRenderPipeline {
-		public:
-			static Ref<Native::NativeRenderPipeline> Create(const Ref<NativeGraphicsContext> &context, const Ref<NativeRenderPass> &renderPass, const Ref<NativeShader> &shader, const InputLayout &layout);
-			
-		public:
-			NativeRenderPipeline() = default;
-			virtual ~NativeRenderPipeline() = default;
-		};
-		
 	}
 
 }

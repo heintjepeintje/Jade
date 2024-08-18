@@ -168,6 +168,18 @@ namespace Jade {
 				JD_ARRAYSIZE(scissors),
 				scissors
 			);
+
+			VkDescriptorSet descriptorSets[1] = { vulkanRenderPipeline->GetDescriptorSet() };
+
+			vkCmdBindDescriptorSets(
+				m_CommandBuffers[m_SwapChain->GetNextImageIndex()], 
+				VK_PIPELINE_BIND_POINT_GRAPHICS, 
+				vulkanRenderPipeline->GetPipelineLayout(),
+				0, 1,
+				descriptorSets,
+				0,
+				nullptr
+			);
 		}
 		
 		void VulkanRendererAPI::Clear(float r, float g, float b, float a) {

@@ -32,23 +32,4 @@ namespace Jade {
 		Ref<Native::NativeShader> m_NativeHandle;
 	};
 	
-	class RenderPipeline {
-	public:
-		RenderPipeline() = default;
-		RenderPipeline(const GraphicsContext &context, const RenderPass &renderPass, const Shader &shader, const InputLayout &layout) {
-			m_NativeHandle = Native::NativeRenderPipeline::Create(
-				context.GetNativeHandle(),
-				renderPass.GetNativeHandle(),
-				shader.GetNativeHandle(),
-				layout
-			);
-		}
-		~RenderPipeline() = default;
-		
-		inline Ref<Native::NativeRenderPipeline> GetNativeHandle() const { return m_NativeHandle; }
-		
-	private:
-		Ref<Native::NativeRenderPipeline> m_NativeHandle;
-	};
-	
 }

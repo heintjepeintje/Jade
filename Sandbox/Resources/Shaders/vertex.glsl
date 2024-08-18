@@ -6,7 +6,11 @@ layout(location = 2) in vec4 aColor;
 
 layout(location = 0) out vec4 oColor;
 
+layout(binding = 0, std140) uniform CameraData {
+	mat4 Projection;
+} uCameraData;
+
 void main() {
 	oColor = aColor;
-    gl_Position = vec4(aPosition, 1.0);
+    gl_Position = uCameraData.Projection * vec4(aPosition, 1.0);
 }
