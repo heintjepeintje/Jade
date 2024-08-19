@@ -14,7 +14,8 @@ project "Sandbox"
 
 	includedirs {
 		"../JadeEngine/Source",
-		"../JadeEngine/Libraries/glm"
+		"../JadeEngine/Libraries/glm",
+		"../JadeEngine/Libraries/stb"
 	}
 
 	links {

@@ -83,6 +83,8 @@ GENERATED += $(OBJDIR)/VulkanRenderPass.o
 GENERATED += $(OBJDIR)/VulkanRenderPipeline.o
 GENERATED += $(OBJDIR)/VulkanRenderer.o
 GENERATED += $(OBJDIR)/VulkanShader.o
+GENERATED += $(OBJDIR)/VulkanTexture.o
+GENERATED += $(OBJDIR)/VulkanUtils.o
 GENERATED += $(OBJDIR)/WindowsInput.o
 GENERATED += $(OBJDIR)/WindowsMemory.o
 GENERATED += $(OBJDIR)/WindowsStartup.o
@@ -98,6 +100,8 @@ OBJECTS += $(OBJDIR)/VulkanRenderPass.o
 OBJECTS += $(OBJDIR)/VulkanRenderPipeline.o
 OBJECTS += $(OBJDIR)/VulkanRenderer.o
 OBJECTS += $(OBJDIR)/VulkanShader.o
+OBJECTS += $(OBJDIR)/VulkanTexture.o
+OBJECTS += $(OBJDIR)/VulkanUtils.o
 OBJECTS += $(OBJDIR)/WindowsInput.o
 OBJECTS += $(OBJDIR)/WindowsMemory.o
 OBJECTS += $(OBJDIR)/WindowsStartup.o
@@ -190,6 +194,12 @@ $(OBJDIR)/VulkanRenderer.o: Source/Jade/Platform/Vulkan/VulkanRenderer.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/VulkanShader.o: Source/Jade/Platform/Vulkan/VulkanShader.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/VulkanTexture.o: Source/Jade/Platform/Vulkan/VulkanTexture.cpp
+	@echo "$(notdir $<)"
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/VulkanUtils.o: Source/Jade/Platform/Vulkan/VulkanUtils.cpp
 	@echo "$(notdir $<)"
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/WindowsInput.o: Source/Jade/Platform/Windows/WindowsInput.cpp

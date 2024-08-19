@@ -18,6 +18,7 @@ namespace Jade {
 			~VulkanRenderPipeline();
 
 			virtual void SetInputElement(uint32_t index, const Ref<Native::NativeUniformBuffer> &buffer) override;
+			virtual void SetInputElement(uint32_t index, const Ref<Native::NativeTexture2D> &texture) override;
 			
 			inline VkPipelineLayout GetPipelineLayout() { return m_PipelineLayout; }
 			inline VkPipeline GetPipeline() { return m_Pipeline; }

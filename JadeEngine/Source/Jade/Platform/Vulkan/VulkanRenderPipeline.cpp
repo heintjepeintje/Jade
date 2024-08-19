@@ -3,6 +3,7 @@
 #include "./VulkanRenderPass.hpp"
 #include "./VulkanShader.hpp"
 #include "./VulkanBuffer.hpp"
+#include "./VulkanTexture.hpp"
 
 namespace Jade {
 
@@ -224,7 +225,7 @@ namespace Jade {
 						poolSizes[uniformBufferIndex].descriptorCount++;
 						break;
 					}
-					case RenderPipelineInputElementType::Sampler: {
+					case RenderPipelineInputElementType::Texture2D: {
 						if (samplerIndex == UINT32_MAX) {
 							VkDescriptorPoolSize samplerPoolSize;
 							samplerPoolSize.type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
@@ -327,6 +328,26 @@ namespace Jade {
 			descriptorWrite.dstArrayElement = 0;
 			descriptorWrite.dstBinding = index;
 			descriptorWrite.pBufferInfo = &bufferInfo;
+
+			vkUpdateDescriptorSets(m_Context->GetLogicalDevice(), 1, &descriptorWrite, 0, nullptr);
+		}
+
+		void VulkanRenderPipeline::SetInputElement(uint32_t index, const Ref<Native::NativeTexture2D> &texture) {
+			Ref<VulkanTexture2D> vulkanTexture = CastRef<VulkanTexture2D>(texture);
+
+			VkDescriptorImageInfo imageInfo{};
+			imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+			imageInfo.imageView = vulkanTexture->GetImageView();
+			imageInfo.sampler = vulkanTexture->GetSampler();
+
+			VkWriteDescriptorSet descriptorWrite{};
+			descriptorWrite.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+			descriptorWrite.dstSet = m_DescriptorSet;
+			descriptorWrite.descriptorCount = 1;
+			descriptorWrite.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+			descriptorWrite.dstArrayElement = 0;
+			descriptorWrite.dstBinding = index;
+			descriptorWrite.pImageInfo = &imageInfo;
 
 			vkUpdateDescriptorSets(m_Context->GetLogicalDevice(), 1, &descriptorWrite, 0, nullptr);
 		}

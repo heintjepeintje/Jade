@@ -19,7 +19,7 @@ endif
 # #############################################
 
 RESCOMP = windres
-INCLUDES += -I../JadeEngine/Source -I../JadeEngine/Libraries/glm
+INCLUDES += -I../JadeEngine/Source -I../JadeEngine/Libraries/glm -I../JadeEngine/Libraries/stb
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)

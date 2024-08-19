@@ -4,29 +4,13 @@ namespace Jade {
 
 	namespace Vulkan {
 	
-		VulkanRendererAPI::VulkanRendererAPI(const Ref<VulkanGraphicsContext> &context, const Ref<VulkanSwapChain> &swapChain) : m_SwapChain(swapChain), m_Context(context) {	
-			vkGetDeviceQueue(m_Context->GetLogicalDevice(), m_Context->GetGraphicsQueueIndex(), 0, &m_Queue);
-			
-			VkCommandPoolCreateInfo commandPoolInfo = {
-				.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO,
-				.pNext = nullptr,
-				.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT,
-				.queueFamilyIndex = m_Context->GetGraphicsQueueIndex()
-			};
-			
-			JD_VULKAN_CALL(vkCreateCommandPool(
-				m_Context->GetLogicalDevice(),
-				&commandPoolInfo, 
-				nullptr, 
-				&m_CommandPool
-			));
-			
+		VulkanRendererAPI::VulkanRendererAPI(const Ref<VulkanGraphicsContext> &context, const Ref<VulkanSwapChain> &swapChain) : m_SwapChain(swapChain), m_Context(context) {			
 			m_CommandBuffers = Alloc<VkCommandBuffer>(m_SwapChain->GetImageCount());
 			
 			VkCommandBufferAllocateInfo commandBufferInfo = {
 				.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO,
 				.pNext = nullptr,
-				.commandPool = m_CommandPool,
+				.commandPool = m_Context->GetGraphicsCommandPool(),
 				.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY,
 				.commandBufferCount = m_SwapChain->GetImageCount()
 			};
@@ -38,29 +22,15 @@ namespace Jade {
 			));
 		}
 		
-		VulkanRendererAPI::~VulkanRendererAPI() {
-			JD_VULKAN_CALL(vkQueueWaitIdle(m_Queue));
-			
-			// vkDestroyPipelineLayout(
-			// 	m_Context->GetLogicalDevice(),
-			// 	m_PipelineLayout,
-			// 	nullptr
-			// );
-			
+		VulkanRendererAPI::~VulkanRendererAPI() {			
 			vkFreeCommandBuffers(
 				m_Context->GetLogicalDevice(), 
-				m_CommandPool, 
+				m_Context->GetGraphicsCommandPool(), 
 				m_SwapChain->GetImageCount(), 
 				m_CommandBuffers
 			);
 			
 			Free(m_CommandBuffers);
-			
-			vkDestroyCommandPool(
-				m_Context->GetLogicalDevice(), 
-				m_CommandPool, 
-				nullptr
-			);
 		}
 		
 		void VulkanRendererAPI::Begin() {
@@ -308,7 +278,7 @@ namespace Jade {
 				.pSignalSemaphores = signalSemaphores
 			};
 			
-			JD_VULKAN_CALL(vkQueueSubmit(m_Queue, 1, &submitInfo, m_SwapChain->GetRenderCompleteFence()));
+			JD_VULKAN_CALL(vkQueueSubmit(m_Context->GetGraphicsQueue(), 1, &submitInfo, m_SwapChain->GetRenderCompleteFence()));
 		}
 	
 	}

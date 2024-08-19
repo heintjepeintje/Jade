@@ -9,12 +9,12 @@ namespace Jade {
 
 	namespace Vulkan {
 		
-		struct VulkanQueueFamilyIndices {
-			uint32_t GraphicsFamilyIndex = UINT32_MAX;
-			uint32_t ComputeFamilyIndex = UINT32_MAX;
-			uint32_t TransferFamilyIndex = UINT32_MAX;
-			uint32_t SparseBindingFamilyIndex = UINT32_MAX;
-			uint32_t PresentIndex = UINT32_MAX;
+		struct VulkanQueueIndices {
+			uint32_t Graphics = UINT32_MAX;
+			uint32_t Compute = UINT32_MAX;
+			uint32_t Transfer = UINT32_MAX;
+			uint32_t SparseBinding = UINT32_MAX;
+			uint32_t Present = UINT32_MAX;
 		};
 		
 		class VulkanGraphicsContext : public Native::NativeGraphicsContext {
@@ -23,15 +23,30 @@ namespace Jade {
 			~VulkanGraphicsContext();
 			
 			inline VkInstance GetInstance() { return m_Instance; }
-			inline VkDevice GetLogicalDevice() { return m_LogicalDevice; }
+			
 			inline VkPhysicalDevice GetPhysicalDevice() { return m_PhysicalDevice; }
+			inline VkPhysicalDeviceProperties GetPhysicalDeviceProperties() { return m_PhysicalDeviceProperties; }
+			inline VkPhysicalDeviceFeatures GetPhysicalDeviceFeatures() { return m_PhysicalDeviceFeatures; }
+			inline VkPhysicalDeviceMemoryProperties GetPhysicalDeviceMemoryProperties() { return m_PhysicalDeviceMemoryProperties; }
+
 			inline VkSurfaceKHR GetSurface() { return m_Surface; }
 			inline VkSurfaceCapabilitiesKHR GetSurfaceCapabilities() { return m_SurfaceCapabilities; }
 			inline VkSurfaceFormatKHR GetSurfaceFormat() { return m_SurfaceFormat; }
-			inline uint32_t GetGraphicsQueueIndex() { return m_QueueFamilyIndices.GraphicsFamilyIndex; }
-			inline uint32_t GetPresentQueueIndex() { return m_QueueFamilyIndices.PresentIndex; }
-			inline uint32_t GetTransferQueueIndex() { return m_QueueFamilyIndices.TransferFamilyIndex; }
+			
+			inline VkDevice GetLogicalDevice() { return m_LogicalDevice; }
+			
+			inline uint32_t GetGraphicsQueueIndex() { return m_QueueIndices.Graphics; }
+			inline VkQueue GetGraphicsQueue() { return m_GraphicsQueue; }
+			inline VkCommandPool GetGraphicsCommandPool() { return m_GraphicsCommandPool; }
+			
+			inline uint32_t GetPresentQueueIndex() { return m_QueueIndices.Present; }
+			inline VkQueue GetPresentQueue() { return m_PresentQueue; }
+			inline VkCommandPool GetPresentCommandPool() { return m_PresentCommandPool; }
+			
+			inline uint32_t GetTransferQueueIndex() { return m_QueueIndices.Transfer; }
+			inline VkCommandPool GetTransferCommandPool() { return m_TransferCommandPool; }
 			inline VkQueue GetTransferQueue() { return m_TransferQueue; }
+
 			inline Ref<Native::NativeWindow> GetWindow() override { return m_Window; }
 			
 		private:
@@ -45,11 +60,17 @@ namespace Jade {
 			VkPhysicalDevice m_PhysicalDevice = VK_NULL_HANDLE;
 			VkPhysicalDeviceProperties m_PhysicalDeviceProperties{};
 			VkPhysicalDeviceFeatures m_PhysicalDeviceFeatures{};
+			VkPhysicalDeviceMemoryProperties m_PhysicalDeviceMemoryProperties{};
 			
-			VulkanQueueFamilyIndices m_QueueFamilyIndices{};
+			VulkanQueueIndices m_QueueIndices{};
 			VkDevice m_LogicalDevice = VK_NULL_HANDLE;
 			
+			VkQueue m_GraphicsQueue = VK_NULL_HANDLE;
+			VkCommandPool m_GraphicsCommandPool = VK_NULL_HANDLE;
+			VkQueue m_PresentQueue = VK_NULL_HANDLE;
+			VkCommandPool m_PresentCommandPool = VK_NULL_HANDLE;
 			VkQueue m_TransferQueue = VK_NULL_HANDLE;
+			VkCommandPool m_TransferCommandPool = VK_NULL_HANDLE;
 			
 			Ref<Native::NativeWindow> m_Window;
 		};
@@ -70,8 +91,6 @@ namespace Jade {
 			inline VkImageView GetImageView(uint32_t index) { return m_ImageViews[index]; }
 			inline VkFramebuffer GetFramebuffer(uint32_t index) { return m_Framebuffers[index]; }
 			inline uint32_t GetImageCount() { return m_ImageCount; }
-			inline VkQueue GetPresentQueue() { return m_PresentQueue; }
-			inline VkCommandPool GetPresentCommandPool() { return m_PresentCommandPool; }
 			inline VkCommandBuffer *GetPresentCommandBuffers() { return m_PresentCommandBuffers; }
 			inline VkSemaphore GetPresentCompleteSemaphore() { return m_PresentCompleteSemaphore; }
 			inline VkSemaphore GetRenderCompleteSemaphore() { return m_RenderCompleteSemaphore; }
@@ -92,11 +111,8 @@ namespace Jade {
 			VkRenderPass m_CompatibleRenderPass;
 			VkFramebuffer *m_Framebuffers;
 			
-			VkQueue m_PresentQueue = VK_NULL_HANDLE;
-			
 			uint32_t m_NextImageIndex = 0;
-			
-			VkCommandPool m_PresentCommandPool = VK_NULL_HANDLE;
+
 			VkCommandBuffer *m_PresentCommandBuffers = nullptr;
 			
 			VkSemaphore m_RenderCompleteSemaphore = VK_NULL_HANDLE;

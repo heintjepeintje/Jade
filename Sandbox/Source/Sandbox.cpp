@@ -5,6 +5,9 @@
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/ext/matrix_clip_space.hpp>
 
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
+
 static bool s_IsRunning = true;
 static Jade::Window s_Window;
 static Jade::GraphicsContext s_Context;
@@ -15,13 +18,21 @@ static Jade::IndexBuffer s_IndexBuffer;
 static Jade::RenderPass s_RenderPass;
 static Jade::Shader s_Shader;
 static Jade::RenderPipeline s_RenderPipeline;
-static Jade::UniformBuffer s_UniformBuffer;
+static Jade::UniformBuffer s_CameraDataBuffer;
+static Jade::UniformBuffer s_ObjectDataBuffer;
+static Jade::Texture2D s_Texture;
 
 struct CameraData {
 	glm::mat4 Projection;
+	glm::mat4 View;
+};
+
+struct ObjectData {
+	glm::mat4 Model;
 };
 
 static CameraData s_CameraData;
+static ObjectData s_ObjectData;
 
 bool OnWindowClose(const Jade::WindowCloseEvent &event JD_UNUSED) {
 	s_IsRunning = false;
@@ -63,19 +74,21 @@ static void Run() {
 	
 	s_Shader = Jade::Shader(
 		s_Context,
-		ReadShader("C:\\dev\\Jade\\Sandbox\\Binaries\\Debug\\Shaders\\vertex.spv"),
-		ReadShader("C:\\dev\\Jade\\Sandbox\\Binaries\\Debug\\Shaders\\fragment.spv")
+		ReadShader("Binaries\\Debug\\Shaders\\vertex.spv"),
+		ReadShader("Binaries\\Debug\\Shaders\\fragment.spv")
 	);
 	
 	s_RenderPipeline = Jade::RenderPipeline(s_Context, s_RenderPass, s_Shader, { 
-		{ 0, Jade::RenderPipelineInputElementType::UniformBuffer }
+		{ 0, Jade::RenderPipelineInputElementType::UniformBuffer },
+		{ 1, Jade::RenderPipelineInputElementType::UniformBuffer },
+		{ 2, Jade::RenderPipelineInputElementType::Texture2D }
 	}, Jade::InputLayout::GetDefaultLayout());
 
 	Jade::Vertex vertices[] = {
 		{ { -0.5f,  0.5f, -1.0f }, { 0.0f, 0.0f }, { 1.0f, 0.0f, 0.0f, 1.0f } },
-		{ { -0.5f, -0.5f, -1.0f }, { 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f, 1.0f } },
-		{ {  0.5f, -0.5f, -1.0f }, { 0.0f, 0.0f }, { 0.0f, 0.0f, 1.0f, 1.0f } },
-		{ {  0.5f,  0.5f, -1.0f }, { 0.0f, 0.0f }, { 1.0f, 1.0f, 0.0f, 1.0f } },
+		{ { -0.5f, -0.5f, -1.0f }, { 0.0f, 1.0f }, { 0.0f, 1.0f, 0.0f, 1.0f } },
+		{ {  0.5f, -0.5f, -1.0f }, { 1.0f, 1.0f }, { 0.0f, 0.0f, 1.0f, 1.0f } },
+		{ {  0.5f,  0.5f, -1.0f }, { 1.0f, 0.0f }, { 1.0f, 1.0f, 0.0f, 1.0f } },
 	};
 	
 	uint32_t indices[] = {
@@ -86,11 +99,22 @@ static void Run() {
 	s_VertexBuffer = Jade::VertexBuffer::Create(s_Context, vertices, sizeof(vertices));
 	s_IndexBuffer = Jade::IndexBuffer::Create(s_Context, indices, sizeof(indices));
 
-	s_CameraData.Projection = glm::mat4(1.0f);
 	s_CameraData.Projection = glm::perspectiveRH_NO(glm::radians(90.0f), (float)s_Window.GetWidth() / (float)s_Window.GetHeight(), 0.01f, 1000.0f);
+	s_CameraData.View = glm::mat4(1.0f);
 
-	s_UniformBuffer = Jade::UniformBuffer::Create(s_Context, &s_CameraData, sizeof(s_CameraData));
-	s_RenderPipeline.SetInputElement(0, s_UniformBuffer);
+	s_ObjectData.Model = glm::rotate(glm::mat4(1.0f), glm::radians(45.0f), glm::vec3(0.0f, 0.0f, -1.0f));
+
+	s_CameraDataBuffer = Jade::UniformBuffer::Create(s_Context, &s_CameraData, sizeof(s_CameraData));
+	s_ObjectDataBuffer = Jade::UniformBuffer::Create(s_Context, &s_ObjectData, sizeof(s_ObjectData));
+	
+	s_RenderPipeline.SetInputElement(0, s_CameraDataBuffer);
+	s_RenderPipeline.SetInputElement(1, s_ObjectDataBuffer);
+
+	int width, height, bpp;
+	stbi_uc *data = stbi_load("Resources/Images/Image0.jpg", &width, &height, &bpp, 4); 
+	s_Texture = Jade::Texture2D::Create(s_Context, width, height, 4, data);
+	
+	s_RenderPipeline.SetInputElement(2, s_Texture);
 	
 	float redValue = 1.0f;
 	bool subtract = false;

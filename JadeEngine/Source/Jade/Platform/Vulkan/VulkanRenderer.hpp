@@ -23,16 +23,10 @@ namespace Jade {
 			virtual void DrawIndexed(const Ref<Native::NativeVertexBuffer> &vbo, const Ref<Native::NativeIndexBuffer> &ibo);
 			virtual void EndRender() override;
 			virtual void End() override;
-			
-			
-			inline VkQueue GetGraphicsQueue() { return m_Queue; }
-			inline VkCommandPool GetCommandPool() { return m_CommandPool; }
+		
 			inline VkCommandBuffer *GetCommandBuffers() { return m_CommandBuffers; }
 			
 		private:
-			VkQueue m_Queue = VK_NULL_HANDLE;
-			
-			VkCommandPool m_CommandPool = VK_NULL_HANDLE;
 			VkCommandBuffer *m_CommandBuffers;
 			VkViewport m_Viewport;
 			VkExtent2D m_Scissor;

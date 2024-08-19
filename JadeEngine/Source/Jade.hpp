@@ -19,3 +19,4 @@
 #include <Jade/Graphics/Buffer.hpp>
 #include <Jade/Graphics/RenderPass.hpp>
 #include <Jade/Graphics/Framebuffer.hpp>
+#include <Jade/Graphics/Texture.hpp>

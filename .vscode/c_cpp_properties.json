@@ -5,6 +5,7 @@
 			"includePath": [
 				"${workspaceFolder}/JadeEngine/Source",
 				"${workspaceFolder}/JadeEngine/Libraries/glm",
+				"${workspaceFolder}/JadeEngine/Libraries/stb",
 				"${env:VULKAN_SDK}/Include"
 			],
 			"cppStandard": "c++20",
@@ -20,6 +21,7 @@
 			"includePath": [
 				"${workspaceFolder}/JadeEngine/Source",
 				"${workspaceFolder}/JadeEngine/Libraries/glm",
+				"${workspaceFolder}/JadeEngine/Libraries/stb",
 				"${env:VULKAN_SDK}/Include"
 			],
 			"cppStandard": "c++20",

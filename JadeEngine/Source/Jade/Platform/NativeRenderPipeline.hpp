@@ -5,12 +5,13 @@
 #include "./NativeRenderPass.hpp"
 #include "./NativeShader.hpp"
 #include "./NativeBuffer.hpp"
+#include "./NativeTexture.hpp"
 
 namespace Jade {
 
 	enum class RenderPipelineInputElementType {
 		None = 0,
-		UniformBuffer, Sampler	
+		UniformBuffer, Texture2D
 	};
 
 	struct RenderPipelineInputElement {
@@ -29,6 +30,7 @@ namespace Jade {
 			virtual ~NativeRenderPipeline() = default;
 
 			virtual void SetInputElement(uint32_t index, const Ref<NativeUniformBuffer> &buffer) = 0;
+			virtual void SetInputElement(uint32_t index, const Ref<NativeTexture2D> &buffer) = 0;
 		};
 	
 	}

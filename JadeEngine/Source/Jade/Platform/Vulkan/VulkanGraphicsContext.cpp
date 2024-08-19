@@ -116,7 +116,7 @@ namespace Jade {
 			return surface;
 		}
 		
-		static VkPhysicalDevice PickPhysicalDevice(uint32_t physicalDeviceCount, VkPhysicalDevice *physicalDevices, VkSurfaceKHR surface, VkPhysicalDeviceProperties *physicalDeviceProperties, VkPhysicalDeviceFeatures *physicalDeviceFeatures) {
+		static VkPhysicalDevice PickPhysicalDevice(uint32_t physicalDeviceCount, VkPhysicalDevice *physicalDevices, VkSurfaceKHR surface, VkPhysicalDeviceProperties *physicalDeviceProperties, VkPhysicalDeviceFeatures *physicalDeviceFeatures, VkPhysicalDeviceMemoryProperties *physicalDeviceMemoryProperties) {
 			for (uint32_t i = 0; i < physicalDeviceCount; i++) {
 				VkPhysicalDevice device = physicalDevices[i];
 				
@@ -125,6 +125,9 @@ namespace Jade {
 				
 				VkPhysicalDeviceFeatures features;
 				vkGetPhysicalDeviceFeatures(device, &features);
+
+				VkPhysicalDeviceMemoryProperties memoryProperties;
+				vkGetPhysicalDeviceMemoryProperties(device, &memoryProperties);
 				
 				JD_INFO("Checking device: %s", properties.deviceName);
 				
@@ -175,6 +178,7 @@ namespace Jade {
 				
 				*physicalDeviceProperties = properties;
 				*physicalDeviceFeatures = features;
+				*physicalDeviceMemoryProperties = memoryProperties;
 				
 				return device;
 			}
@@ -184,8 +188,8 @@ namespace Jade {
 			return VK_NULL_HANDLE;
 		}
 		
-		static VulkanQueueFamilyIndices GetDeviceQueueIndices(VkPhysicalDevice device, VkSurfaceKHR surface) {
-			VulkanQueueFamilyIndices queueFamilies;
+		static VulkanQueueIndices GetDeviceQueueIndices(VkPhysicalDevice device, VkSurfaceKHR surface) {
+			VulkanQueueIndices queueFamilies;
 			
 			uint32_t queueCount = 0;
 			vkGetPhysicalDeviceQueueFamilyProperties(device, &queueCount, nullptr);
@@ -195,30 +199,30 @@ namespace Jade {
 						
 			for (uint32_t i = 0; i < queueCount; i++) {
 				VkQueueFamilyProperties queue = queues[i];
-				if (queue.queueFlags & VK_QUEUE_GRAPHICS_BIT && queueFamilies.GraphicsFamilyIndex == UINT32_MAX) {
-					queueFamilies.GraphicsFamilyIndex = i;
+				if (queue.queueFlags & VK_QUEUE_GRAPHICS_BIT && queueFamilies.Graphics == UINT32_MAX) {
+					queueFamilies.Graphics = i;
 					continue;
 				}
 				
-				if (queueFamilies.PresentIndex == UINT32_MAX) {
+				if (queueFamilies.Present == UINT32_MAX) {
 					VkBool32 hasPresentCapabilities = VK_FALSE;
 					vkGetPhysicalDeviceSurfaceSupportKHR(device, i, surface, &hasPresentCapabilities);
 					if (hasPresentCapabilities) {
-						queueFamilies.PresentIndex = i;
+						queueFamilies.Present = i;
 					}
 				}
 				
-				if (queue.queueFlags & VK_QUEUE_COMPUTE_BIT && queueFamilies.ComputeFamilyIndex == UINT32_MAX) {
-					queueFamilies.ComputeFamilyIndex = i;
+				if (queue.queueFlags & VK_QUEUE_COMPUTE_BIT && queueFamilies.Compute == UINT32_MAX) {
+					queueFamilies.Compute = i;
 					continue;
 				}
 				
-				if (queue.queueFlags & VK_QUEUE_TRANSFER_BIT && queueFamilies.TransferFamilyIndex == UINT32_MAX) {
-					queueFamilies.TransferFamilyIndex = i;
+				if (queue.queueFlags & VK_QUEUE_TRANSFER_BIT && queueFamilies.Transfer == UINT32_MAX) {
+					queueFamilies.Transfer = i;
 				}
 				
-				if (queue.queueFlags & VK_QUEUE_SPARSE_BINDING_BIT && queueFamilies.SparseBindingFamilyIndex == UINT32_MAX) {
-					queueFamilies.SparseBindingFamilyIndex = i;
+				if (queue.queueFlags & VK_QUEUE_SPARSE_BINDING_BIT && queueFamilies.SparseBinding == UINT32_MAX) {
+					queueFamilies.SparseBinding = i;
 				}
 			}
 			
@@ -352,11 +356,11 @@ namespace Jade {
 			
 			m_Surface = CreateSurface(m_Instance, window);
 			
-			m_PhysicalDevice = PickPhysicalDevice(physicalDeviceCount, physicalDevices, m_Surface, &m_PhysicalDeviceProperties, &m_PhysicalDeviceFeatures);
+			m_PhysicalDevice = PickPhysicalDevice(physicalDeviceCount, physicalDevices, m_Surface, &m_PhysicalDeviceProperties, &m_PhysicalDeviceFeatures, &m_PhysicalDeviceMemoryProperties);
 			
 			Free(physicalDevices);
 			
-			m_QueueFamilyIndices = GetDeviceQueueIndices(m_PhysicalDevice, m_Surface); 
+			m_QueueIndices = GetDeviceQueueIndices(m_PhysicalDevice, m_Surface); 
 			
 			JD_VULKAN_CALL(vkGetPhysicalDeviceSurfaceCapabilitiesKHR(
 				m_PhysicalDevice, 
@@ -380,7 +384,7 @@ namespace Jade {
 					.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
 					.pNext = nullptr,
 					.flags = 0,
-					.queueFamilyIndex = m_QueueFamilyIndices.GraphicsFamilyIndex,
+					.queueFamilyIndex = m_QueueIndices.Graphics,
 					.queueCount = 1,
 					.pQueuePriorities = &defaultPriority,
 				},
@@ -388,7 +392,7 @@ namespace Jade {
 					.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
 					.pNext = nullptr,
 					.flags = 0,
-					.queueFamilyIndex = m_QueueFamilyIndices.PresentIndex,
+					.queueFamilyIndex = m_QueueIndices.Present,
 					.queueCount = 1,
 					.pQueuePriorities = &defaultPriority,
 				},
@@ -396,7 +400,7 @@ namespace Jade {
 					.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO,
 					.pNext = nullptr,
 					.flags = 0,
-					.queueFamilyIndex = m_QueueFamilyIndices.TransferFamilyIndex,
+					.queueFamilyIndex = m_QueueIndices.Transfer,
 					.queueCount = 1,
 					.pQueuePriorities = &defaultPriority,
 				},
@@ -421,9 +425,80 @@ namespace Jade {
 			
 			
 			JD_VULKAN_CALL(vkCreateDevice(m_PhysicalDevice, &deviceInfo, nullptr, &m_LogicalDevice));
+
+			vkGetDeviceQueue(m_LogicalDevice, m_QueueIndices.Graphics, 0, &m_GraphicsQueue);
+
+			VkCommandPoolCreateInfo commandPoolInfo = {
+				.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO,
+				.pNext = nullptr,
+				.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT,
+				.queueFamilyIndex = m_QueueIndices.Graphics
+			};
+			
+			JD_VULKAN_CALL(vkCreateCommandPool(m_LogicalDevice, &commandPoolInfo,  nullptr,  &m_GraphicsCommandPool));
+
+			vkGetDeviceQueue(m_LogicalDevice, m_QueueIndices.Present, 0, &m_PresentQueue);
+
+			VkCommandPoolCreateInfo presentCommandPoolInfo = {
+				.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO,
+				.pNext = nullptr,
+				.flags = 0,
+				.queueFamilyIndex = m_QueueIndices.Present
+			};
+			
+			JD_VULKAN_CALL(vkCreateCommandPool(
+				m_LogicalDevice, 
+				&presentCommandPoolInfo, 
+				nullptr, 
+				&m_PresentCommandPool
+			));
+
+			vkGetDeviceQueue(
+				m_LogicalDevice, 
+				m_QueueIndices.Transfer, 
+				0,
+				&m_TransferQueue
+			);
+
+			VkCommandPoolCreateInfo transferCommandPoolInfo = {
+				.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO,
+				.pNext = nullptr,
+				.flags = 0,
+				.queueFamilyIndex = m_QueueIndices.Transfer
+			};
+			
+			JD_VULKAN_CALL(vkCreateCommandPool(
+				m_LogicalDevice, 
+				&transferCommandPoolInfo, 
+				nullptr, 
+				&m_TransferCommandPool
+			));
 		}
 		
 		VulkanGraphicsContext::~VulkanGraphicsContext() {
+			vkDestroyCommandPool(
+				m_LogicalDevice,
+				m_GraphicsCommandPool, 
+				nullptr
+			);
+
+			JD_VULKAN_CALL(vkQueueWaitIdle(m_GraphicsQueue));
+
+			vkDestroyCommandPool(
+				m_LogicalDevice, 
+				m_PresentCommandPool, 
+				nullptr
+			);
+
+			JD_VULKAN_CALL(vkQueueWaitIdle(m_PresentQueue));
+
+			vkDestroyCommandPool(
+				m_LogicalDevice,
+				m_TransferCommandPool, 
+				nullptr
+			);
+
+			JD_VULKAN_CALL(vkQueueWaitIdle(m_TransferQueue));
 			JD_VULKAN_CALL(vkDeviceWaitIdle(m_LogicalDevice));
 			
 			vkDestroyDevice(m_LogicalDevice, nullptr);
@@ -434,14 +509,7 @@ namespace Jade {
 			vkDestroyInstance(m_Instance, nullptr);
 		}
 		
-		VulkanSwapChain::VulkanSwapChain(const Ref<VulkanGraphicsContext> &context, uint32_t bufferCount) : m_Context(context) {
-			vkGetDeviceQueue(
-				m_Context->GetLogicalDevice(), 
-				m_Context->GetPresentQueueIndex(), 
-				0, 
-				&m_PresentQueue
-			);
-			
+		VulkanSwapChain::VulkanSwapChain(const Ref<VulkanGraphicsContext> &context, uint32_t bufferCount) : m_Context(context) {			
 			uint32_t presentModeCount = 0;
 			JD_VULKAN_CALL(vkGetPhysicalDeviceSurfacePresentModesKHR(
 				m_Context->GetPhysicalDevice(), 
@@ -631,26 +699,12 @@ namespace Jade {
 				));
 			}
 			
-			VkCommandPoolCreateInfo presentCommandPoolInfo = {
-				.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO,
-				.pNext = nullptr,
-				.flags = 0,
-				.queueFamilyIndex = m_Context->GetPresentQueueIndex()
-			};
-			
-			JD_VULKAN_CALL(vkCreateCommandPool(
-				m_Context->GetLogicalDevice(), 
-				&presentCommandPoolInfo, 
-				nullptr, 
-				&m_PresentCommandPool
-			));
-			
 			m_PresentCommandBuffers = Alloc<VkCommandBuffer>(m_ImageCount);
 			
 			VkCommandBufferAllocateInfo presentCommandBufferInfo = {
 				.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO,
 				.pNext = nullptr,
-				.commandPool = m_PresentCommandPool,
+				.commandPool = m_Context->GetPresentCommandPool(),
 				.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY,
 				.commandBufferCount = m_ImageCount
 			};
@@ -712,8 +766,8 @@ namespace Jade {
 		}
 		
 		VulkanSwapChain::~VulkanSwapChain() {
-			JD_VULKAN_CALL(vkQueueWaitIdle(m_PresentQueue));
-			
+			vkQueueWaitIdle(m_Context->GetPresentQueue());
+
 			vkDestroySemaphore(
 				m_Context->GetLogicalDevice(), 
 				m_PresentCompleteSemaphore, 
@@ -740,16 +794,11 @@ namespace Jade {
 			
 			vkFreeCommandBuffers(
 				m_Context->GetLogicalDevice(), 
-				m_PresentCommandPool, 
+				m_Context->GetPresentCommandPool(), 
 				m_ImageCount, 
 				m_PresentCommandBuffers
 			);
 			
-			vkDestroyCommandPool(
-				m_Context->GetLogicalDevice(), 
-				m_PresentCommandPool, 
-				nullptr
-			);
 			for (uint32_t i = 0; i < m_ImageCount; i++) {
 				vkDestroyImageView(
 					m_Context->GetLogicalDevice(), 
@@ -810,7 +859,7 @@ namespace Jade {
 				.pResults = &result
 			};
 			
-			VkResult presentResult = vkQueuePresentKHR(m_PresentQueue, &presentInfo);
+			VkResult presentResult = vkQueuePresentKHR(m_Context->GetPresentQueue(), &presentInfo);
 			
 			if (presentResult == VK_ERROR_OUT_OF_DATE_KHR) {
 				Resize(m_Context->GetWindow()->GetWidth(), m_Context->GetWindow()->GetHeight());

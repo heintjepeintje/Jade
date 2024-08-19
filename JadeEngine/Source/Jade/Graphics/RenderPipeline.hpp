@@ -4,6 +4,7 @@
 #include "./RenderPass.hpp"
 #include "./Shader.hpp"
 #include "./InputLayout.hpp"
+#include "./Texture.hpp"
 #include "./../Platform/NativeRenderPipeline.hpp"
 
 namespace Jade {
@@ -23,7 +24,8 @@ namespace Jade {
 		~RenderPipeline() = default;
 
 		inline void SetInputElement(uint32_t index, const UniformBuffer &buffer) { return m_NativeHandle->SetInputElement(index, buffer.GetNativeHandle()); }
-		
+		inline void SetInputElement(uint32_t index, const Texture2D &texture) { return m_NativeHandle->SetInputElement(index, texture.GetNativeHandle()); }
+
 		inline Ref<Native::NativeRenderPipeline> GetNativeHandle() const { return m_NativeHandle; }
 		
 	private:
