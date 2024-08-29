@@ -8,7 +8,8 @@ namespace Jade {
 
 	enum struct InputElementType {
 		None = 0,
-		Vector2, Vector3, Vector4
+		UInt32, Int32, Float32,
+		Vector2, Vector3, Vector4,
 	};
 	
 	struct InputElement {

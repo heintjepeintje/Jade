@@ -14,6 +14,7 @@ namespace Jade {
 		glm::vec3 Position;
 		glm::vec2 UV;
 		glm::vec4 Color;
+		uint32_t ID;
 	};
 
 	class VertexBuffer {
@@ -61,11 +62,10 @@ namespace Jade {
 
 	class UniformBuffer {
 	public:
-		static UniformBuffer Create(const GraphicsContext &context, void *data, size_t size) {
+		static UniformBuffer Create(const GraphicsContext &context, size_t size) {
 			UniformBuffer buffer;
 			buffer.m_NativeHandle = Native::NativeUniformBuffer::Create(
 				context.GetNativeHandle(),
-				data,
 				size
 			);
 			return buffer;	
@@ -74,6 +74,12 @@ namespace Jade {
 	public:
 		UniformBuffer() = default;
 		~UniformBuffer() = default;
+
+		template<typename _Type>
+		inline _Type *MapAs() const { return (_Type*)m_NativeHandle->Map(); }
+		
+		inline void *Map() const { return m_NativeHandle->Map(); }
+		inline void Unmap() { return m_NativeHandle->Unmap(); }
 
 		inline Ref<Native::NativeUniformBuffer> GetNativeHandle() const { return m_NativeHandle; }
 		

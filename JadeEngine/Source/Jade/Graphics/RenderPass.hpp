@@ -7,10 +7,14 @@ namespace Jade {
 
 	class RenderPass {
 	public:
-		RenderPass() = default;
-		RenderPass(const GraphicsContext &context) {
-			m_NativeHandle = Native::NativeRenderPass::Create(context.GetNativeHandle());
+		static RenderPass Create(const GraphicsContext &context) {
+			RenderPass pass;
+			pass.m_NativeHandle = Native::NativeRenderPass::Create(context.GetNativeHandle());
+			return pass;
 		}
+		
+	public:
+		RenderPass() = default;
 		~RenderPass() = default;
 		
 		inline Ref<Native::NativeRenderPass> GetNativeHandle() const { return m_NativeHandle; }

@@ -14,6 +14,9 @@ namespace Jade {
 
 		VkFormat GetInputElementFormat(InputElementType type) {
 			switch (type) {
+				case InputElementType::UInt32: return VK_FORMAT_R32_UINT;
+				case InputElementType::Int32: return VK_FORMAT_R32_SINT;
+				case InputElementType::Float32: return VK_FORMAT_R32_SFLOAT;
 				case InputElementType::Vector2: return VK_FORMAT_R32G32_SFLOAT;
 				case InputElementType::Vector3: return VK_FORMAT_R32G32B32_SFLOAT;
 				case InputElementType::Vector4: return VK_FORMAT_R32G32B32A32_SFLOAT;
@@ -23,9 +26,21 @@ namespace Jade {
 		
 		uint32_t GetInputElementSize(InputElementType type) {
 			switch (type) {
+				case InputElementType::UInt32: return sizeof(uint32_t);
+				case InputElementType::Int32: return sizeof(int32_t);
+				case InputElementType::Float32: return sizeof(float);
 				case InputElementType::Vector2: return 2 * sizeof(float);
 				case InputElementType::Vector3: return 3 * sizeof(float);
 				case InputElementType::Vector4: return 4 * sizeof(float);
+				default: return 0;
+			}
+		}
+
+		uint32_t GetInputUniformTypeSize(RenderPipelineInputUniformType type) {
+			switch (type) {
+				case RenderPipelineInputUniformType::UInt32: return sizeof(uint32_t);
+				case RenderPipelineInputUniformType::Int32: return sizeof(int32_t);
+				case RenderPipelineInputUniformType::Float: return sizeof(float);
 				default: return 0;
 			}
 		}

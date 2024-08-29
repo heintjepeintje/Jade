@@ -47,8 +47,11 @@ namespace Jade {
 
 		class VulkanUniformBuffer : public Native::NativeUniformBuffer {
 		public:
-			VulkanUniformBuffer(const Ref<VulkanGraphicsContext> &context, void *data, size_t size);
+			VulkanUniformBuffer(const Ref<VulkanGraphicsContext> &context, size_t size);
 			~VulkanUniformBuffer();
+
+			virtual void *Map() const override;
+			virtual void Unmap() override;
 
 			inline VkBuffer GetBuffer() { return m_Buffer; }
 			inline VkDeviceMemory GetDeviceMemory() { return m_Memory; }

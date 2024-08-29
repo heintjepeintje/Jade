@@ -7,11 +7,14 @@ namespace Jade {
 	
 	class GraphicsContext {
 	public:
-		GraphicsContext() = default;
-		GraphicsContext(const Window &window) {
-			m_NativeHandle = Native::NativeGraphicsContext::Create(window.GetNativeHandle());
+		static GraphicsContext Create(const Window &window) {
+			GraphicsContext context;
+			context.m_NativeHandle = Native::NativeGraphicsContext::Create(window.GetNativeHandle());
+			return context;
 		}
-		
+
+	public:
+		GraphicsContext() = default;		
 		~GraphicsContext() = default;
 		
 		inline Ref<Native::NativeGraphicsContext> GetNativeHandle() const { return m_NativeHandle; }
@@ -22,10 +25,13 @@ namespace Jade {
 	
 	class SwapChain {
 	public:
-		SwapChain() = default;
-		SwapChain(const GraphicsContext &context, uint32_t bufferCount) {
-			m_NativeHandle = Native::NativeSwapChain::Create(context.GetNativeHandle(), bufferCount);
+		static SwapChain Create(const GraphicsContext &context, uint32_t bufferCount) {
+			SwapChain swapChain;
+			swapChain.m_NativeHandle = Native::NativeSwapChain::Create(context.GetNativeHandle(), bufferCount);
+			return swapChain;
 		}
+	public:
+		SwapChain() = default;
 		~SwapChain() = default;
 		
 		inline void Present() { m_NativeHandle->Present(); }

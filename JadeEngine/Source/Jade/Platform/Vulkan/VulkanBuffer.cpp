@@ -202,7 +202,7 @@ namespace Jade {
 			);
 		}
 
-		VulkanUniformBuffer::VulkanUniformBuffer(const Ref<VulkanGraphicsContext> &context, void *data, size_t size) : m_Context(context), m_Size(size) {
+		VulkanUniformBuffer::VulkanUniformBuffer(const Ref<VulkanGraphicsContext> &context, size_t size) : m_Context(context), m_Size(size) {
 			VkBufferCreateInfo bufferInfo = {
 				.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO,
 				.pNext = nullptr,
@@ -265,23 +265,6 @@ namespace Jade {
 				m_Memory,
 				0
 			));
-			
-			void *buffer;
-			JD_VULKAN_CALL(vkMapMemory(
-				m_Context->GetLogicalDevice(),
-				m_Memory,
-				0,
-				bufferInfo.size,
-				0,
-				&buffer
-			));
-			
-			std::memcpy(buffer, data, size);
-			
-			vkUnmapMemory(
-				m_Context->GetLogicalDevice(),
-				m_Memory
-			);
 		}
 
 		VulkanUniformBuffer::~VulkanUniformBuffer() {
@@ -296,6 +279,16 @@ namespace Jade {
 				m_Buffer,
 				nullptr
 			);
+		}
+
+		void *VulkanUniformBuffer::Map() const {
+			void *map;
+			JD_VULKAN_CALL(vkMapMemory(m_Context->GetLogicalDevice(), m_Memory, 0, VK_WHOLE_SIZE, 0, &map));
+			return map;
+		}
+
+		void VulkanUniformBuffer::Unmap() {
+			vkUnmapMemory(m_Context->GetLogicalDevice(), m_Memory);
 		}
 	
 	}
@@ -316,10 +309,10 @@ namespace Jade {
 			);
 		}
 
-		Ref<NativeUniformBuffer> NativeUniformBuffer::Create(const Ref<NativeGraphicsContext> &context, void *data, size_t size) {
+		Ref<NativeUniformBuffer> NativeUniformBuffer::Create(const Ref<NativeGraphicsContext> &context, size_t size) {
 			return std::make_shared<Vulkan::VulkanUniformBuffer>(
 				CastRef<Vulkan::VulkanGraphicsContext>(context),
-				data, size
+				size
 			);
 		}
 	

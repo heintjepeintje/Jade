@@ -7,10 +7,16 @@ namespace Jade {
 	
 	class Window {
 	public:
-		Window() = default;
-		Window(const std::string &title, uint32_t width, uint32_t height) {
-			m_NativeHandle = Native::NativeWindow::Create(title, width, height);
+		static Window Create(const std::string &title, uint32_t width, uint32_t height) {
+			Window window;
+			window.m_NativeHandle = Native::NativeWindow::Create(
+				title, 
+				width, height
+			);
+			return window;
 		}
+	public:
+		Window() = default;
 		~Window() = default;
 		
 		inline void SetVisible(bool visible) { m_NativeHandle->SetVisible(visible); }

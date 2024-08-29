@@ -31,7 +31,7 @@ namespace Jade {
 			VkViewport m_Viewport;
 			VkExtent2D m_Scissor;
 			
-			VkRenderPass m_RenderPass;
+			Ref<VulkanRenderPipeline> m_CurrentPipeline;
 			
 			Ref<VulkanSwapChain> m_SwapChain;
 			Ref<VulkanGraphicsContext> m_Context;

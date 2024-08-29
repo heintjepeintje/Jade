@@ -11,16 +11,19 @@ namespace Jade {
 
 	class RenderPipeline {
 	public:
-		RenderPipeline() = default;
-		RenderPipeline(const GraphicsContext &context, const RenderPass &renderPass, const Shader &shader, const std::vector<RenderPipelineInputElement> &elements, const InputLayout &layout) {
-			m_NativeHandle = Native::NativeRenderPipeline::Create(
+		static RenderPipeline Create(const GraphicsContext &context, const RenderPass &renderPass, const Shader &shader, const std::vector<RenderPipelineInputElement> &elements, const InputLayout &layout) {
+			RenderPipeline pipeline;
+			pipeline.m_NativeHandle = Native::NativeRenderPipeline::Create(
 				context.GetNativeHandle(),
 				renderPass.GetNativeHandle(),
 				shader.GetNativeHandle(),
 				elements,
 				layout
 			);
+			return pipeline;
 		}
+	public:
+		RenderPipeline() = default;
 		~RenderPipeline() = default;
 
 		inline void SetInputElement(uint32_t index, const UniformBuffer &buffer) { return m_NativeHandle->SetInputElement(index, buffer.GetNativeHandle()); }

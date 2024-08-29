@@ -79,7 +79,7 @@ namespace Jade {
 		}
 		
 		void VulkanRendererAPI::BeginRender(const Ref<Native::NativeRenderPipeline> &pipeline) {
-			Ref<VulkanRenderPipeline> vulkanRenderPipeline = CastRef<VulkanRenderPipeline>(pipeline);
+			m_CurrentPipeline = CastRef<VulkanRenderPipeline>(pipeline);
 			
 			VkClearValue clearValue = {
 				.color = {
@@ -95,7 +95,7 @@ namespace Jade {
 			VkRenderPassBeginInfo renderPassBeginInfo = {
 				.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO,
 				.pNext = nullptr,
-				.renderPass = vulkanRenderPipeline->GetRenderPass()->GetRenderPass(),
+				.renderPass = m_CurrentPipeline->GetRenderPass()->GetRenderPass(),
 				.framebuffer = m_SwapChain->GetFramebuffer(m_SwapChain->GetNextImageIndex()),
 				.renderArea = {
 					.offset = {
@@ -114,7 +114,7 @@ namespace Jade {
 			vkCmdBindPipeline(
 				m_CommandBuffers[m_SwapChain->GetNextImageIndex()],
 				VK_PIPELINE_BIND_POINT_GRAPHICS,
-				vulkanRenderPipeline->GetPipeline()
+				m_CurrentPipeline->GetPipeline()
 			);
 			
 			vkCmdBeginRenderPass(
@@ -123,8 +123,8 @@ namespace Jade {
 				VK_SUBPASS_CONTENTS_INLINE
 			);
 			
-			VkViewport viewports[] = { vulkanRenderPipeline->GetViewport() };
-			VkRect2D scissors[] = { vulkanRenderPipeline->GetScissor() };
+			VkViewport viewports[] = { m_CurrentPipeline->GetViewport() };
+			VkRect2D scissors[] = { m_CurrentPipeline->GetScissor() };
 			
 			vkCmdSetViewport(
 				m_CommandBuffers[m_SwapChain->GetNextImageIndex()],
@@ -137,18 +137,6 @@ namespace Jade {
 				0,
 				JD_ARRAYSIZE(scissors),
 				scissors
-			);
-
-			VkDescriptorSet descriptorSets[1] = { vulkanRenderPipeline->GetDescriptorSet() };
-
-			vkCmdBindDescriptorSets(
-				m_CommandBuffers[m_SwapChain->GetNextImageIndex()], 
-				VK_PIPELINE_BIND_POINT_GRAPHICS, 
-				vulkanRenderPipeline->GetPipelineLayout(),
-				0, 1,
-				descriptorSets,
-				0,
-				nullptr
 			);
 		}
 		
@@ -180,6 +168,17 @@ namespace Jade {
 			
 			VkBuffer vertexBuffers[] = { vulkanVertexBuffer->GetBuffer() };
 			VkDeviceSize offsets[] = { 0 };
+
+			VkDescriptorSet sets[] = { m_CurrentPipeline->GetDescriptorSet() };
+
+			vkCmdBindDescriptorSets(
+				m_CommandBuffers[m_SwapChain->GetNextImageIndex()], 
+				VK_PIPELINE_BIND_POINT_GRAPHICS, 
+				m_CurrentPipeline->GetPipelineLayout(), 
+				0,
+				1, sets, 
+				0, nullptr
+			);
 			
 			vkCmdBindVertexBuffers(
 				m_CommandBuffers[m_SwapChain->GetNextImageIndex()],

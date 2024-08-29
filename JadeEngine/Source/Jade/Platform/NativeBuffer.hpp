@@ -32,11 +32,14 @@ namespace Jade {
 
 		class NativeUniformBuffer {
 		public:
-			static Ref<NativeUniformBuffer> Create(const Ref<NativeGraphicsContext> &context, void *data, size_t size);
+			static Ref<NativeUniformBuffer> Create(const Ref<NativeGraphicsContext> &context, size_t size);
 
 		public:
 			NativeUniformBuffer() = default;
 			virtual ~NativeUniformBuffer() = default;
+
+			virtual void *Map() const = 0;
+			virtual void Unmap() = 0;
 
 			virtual size_t GetSize() const = 0; 
 		};

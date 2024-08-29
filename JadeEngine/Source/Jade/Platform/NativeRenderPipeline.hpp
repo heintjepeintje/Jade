@@ -19,6 +19,16 @@ namespace Jade {
 		RenderPipelineInputElementType ElementType;
 	};
 
+	enum class RenderPipelineInputUniformType {
+		None = 0,
+		Int32, UInt32, Float
+	};
+
+	struct RenderPipelineInputUniform {
+		uint32_t Index;
+		RenderPipelineInputUniformType Type;
+	};
+
 	namespace Native {
 	
 		class NativeRenderPipeline {
